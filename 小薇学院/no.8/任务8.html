@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css"> 
+    * {
+        margin: 0;
+        padding:0;
+    }
+    .grid-container{
+        width: 100%;
+    }
+       .grid-container *{
+        box-sizing: border-box;
+    }
+    .row:before,.row:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+    [class*='col-']{
+        box-sizing:border-box;
+	float: left;
+	border:1px solid #999;
+	background-color: #eee;
+	margin: 10px;
+	height: 50px;
+	padding: 10px 0 0 15px;
+    }
+ 
+    @media all and (min-width: 768px) {
+	.sm {
+		display: none;
+	}
+	.col-md-1 {
+		width: calc(8.33% - 22px);
+	}
+	.col-md-2 {
+		width: calc(16.66% - 22px);
+	}
+	.col-md-3 {
+		width: calc(25% - 22px);
+	}
+	.col-md-4 {
+		width: calc(33.33% - 22px);
+	}
+	.col-md-6 {
+		width: calc(50% - 22px);
+	}
+}
+@media all and (max-width: 768px) {
+	.md {
+		display: none;
+	}
+	.col-sm-2 {
+		width: calc(16.66% - 22px);
+	}
+	.col-sm-3 {
+		width: calc(25% - 22px);
+	}
+	.col-sm-6 {
+		width: calc(50% - 22px);
+	}
+	.col-sm-8 {
+		width: calc(66.66% - 22px);
+	}
+	.col-sm-12 {
+		width: calc(100% - 22px);
+	}
+}
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <p class="md">col-4</p>
+				<p class="sm">col-6</p>
+            </div> 
+            <div class="col-md-4 col-sm-6">
+                <p class="md">col-4</p>
+				<p class="sm">col-6</p>
+            </div> 
+            <div class="col-md-4 col-sm-12">
+                <p class="md">col-4</p>
+				<p class="sm">col-12</p>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-3">
+				<p class="md">col-3</p>
+				<p class="sm">col-3</p>
+			</div>
+             <div class="col-md-6 col-sm-6">
+				<p class="md">col-6</p>
+				<p class="sm">col-6</p>
+			</div>
+            <div class="col-md-3 col-sm-3">
+				<p class="md">col-3</p>
+				<p class="sm">col-3</p>
+			</div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-sm-2">
+				<p class="md">col-1</p>
+				<p class="sm">col-2</p>
+			</div>
+            <div class="col-md-1 col-sm-2">
+				<p class="md">col-1</p>
+				<p class="sm">col-2</p>
+			</div>
+            <div class="col-md-2 col-sm-8">
+				<p class="md">col-2</p>
+				<p class="sm">col-8</p>
+			</div>
+            <div class="col-md-2 col-sm-3">
+				<p class="md">col-2</p>
+				<p class="sm">col-3</p>
+			</div>
+            <div class="col-md-6 col-sm-3">
+				<p class="md">col-6</p>
+				<p class="sm">col-3</p>
+			</div>
+        </div>  
+    </div>
+
+</body>
+</html>
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
