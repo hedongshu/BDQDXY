@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        ul li {
+            text-align: center;
+            width: 1em;
+            margin: 3px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <input id="inp" type="text" name="" value="">
+        <span id="span" style="visibility: hidden;">请输入10-100的数字</span>
+        <br> <br>
+
+        <input class="left-in" type="button" value="左侧入">
+        <input class="right-in" type="button" value="右侧入">
+        <input class="left-out" type="button" value="左侧出">
+        <input class="right-out" type="button" value="右侧出">
+    </form>
+    <ul id="ul">
+        <!--<li style="height: 12px"></li>
+        <li style="height: 15px"></li>
+        <li style="height: 65px"></li>
+        <li style="height: 33px"></li>-->
+    </ul>
+    <script>
+        // 输入框事件 提示输入范围
+        var inp = document.getElementById("inp");
+        inp.onfocus = function () {
+            document.getElementById("span").style.cssText = "visibility:visible";
+        }
+        inp.onblur = function () {
+            document.getElementById("span").style.cssText = "visibility:hidden";
+        }
+
+        // 限制输入范围
+        inp.onblur = function () {
+            inp.value = inp.value.replace(/^[0-9]$|1\d\d+|\D+/, "");
+        }
+
+
+        var ul = document.getElementById("ul");
+        var ul_li = [];
+        var ul_li_html = "";
+        document.getElementsByClassName("left-in")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            ul_li.unshift(inpvalue);
+            add();
+
+        }
+        document.getElementsByClassName("right-in")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            ul_li.push(inpvalue);
+            add();
+        }
+        document.getElementsByClassName("left-out")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            alert(ul_li.shift());
+            add();
+        }
+        document.getElementsByClassName("right-out")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            alert(ul_li.pop());
+            add();
+        }
+
+
+        // 把ul_li的值 创建为 li
+        function add() {
+            for (i = 0; i < ul_li.length; i++) {
+                if (ul_li[i] != "") {
+                    ul_li_html += '<li style="height: ' + ul_li[i] + 'em;"></li> ';
+                    ul.innerHTML = ul_li_html;
+                } else {
+                    return;
+                }
+            }
+            ul_li_html = "";
+        }
+    </script>
+</body>
+
+</html>
