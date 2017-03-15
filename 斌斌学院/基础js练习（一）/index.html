@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    ul {
-        list-style: none;
-        display: flex;
-
-    }
-    ul li{
-        text-align: center;
-        width: 20px;
-        margin: 5px;
-        background-color: lightblue;
-    }
+        ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        ul li {
+            text-align: center;
+            width: 20px;
+            margin: 5px;
+            background-color: lightblue;
+        }
     </style>
 </head>
+
 <body>
     <form id="form">
-        <input type="text" name="" value="">
+        <input id="inp" type="text" name="" value="">
         <input class="left-in" type="button" value="左侧入">
-        <input class="rigth-in" type="button" value="右侧入">
+        <input class="right-in" type="button" value="右侧入">
         <input class="left-out" type="button" value="左侧出">
         <input class="right-out" type="button" value="右侧出">
     </form>
     <ul id="ul">
-        
+
     </ul>
     <script>
-        document.getElementsByClassName("left-in")[0].onclick=function(){
-            document.getElementById
+        var ul = document.getElementById("ul");
+        var ul_li = [];
+        var ul_li_html = "";
+        document.getElementsByClassName("left-in")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            ul_li.unshift(inpvalue);
+            add();
         }
-        document.getElementsByClassName("rigth-in")[0].onclick=function(){
-            alert ("aa");
+        document.getElementsByClassName("right-in")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            ul_li.push(inpvalue);
+            add();
         }
-        document.getElementsByClassName("left-out")[0].onclick=function(){
-            alert ("aa");
+        document.getElementsByClassName("left-out")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            alert(ul_li.shift());
+            add();
         }
-        document.getElementsByClassName("rigth-out")[0].onclick=function(){
-            alert ("aa");
+        document.getElementsByClassName("right-out")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            alert(ul_li.pop());
+            add();
         }
 
+
+        // 把ul_li的值 创建为 li
+        function add() {
+            for (i = 0; i < ul_li.length; i++) {
+                ul_li_html += "<li>" + ul_li[i] + "</li>";
+                ul.innerHTML = ul_li_html;
+            }
+            ul_li_html="";
+        }
     </script>
 </body>
+
 </html>
