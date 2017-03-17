@@ -14,20 +14,28 @@
         
         ul li {
             text-align: center;
-            width: 20px;
+            min-width: 20px;
             margin: 5px;
             background-color: lightblue;
+        }
+        
+        .on {
+            text-align: center;
+            min-width: 20px;
+            margin: 5px;
+            background-color: palevioletred;
         }
     </style>
 </head>
 
 <body>
     <form id="form">
-        <input id="inp" type="text" name="" value="">
+        <textarea id="inp" rows="" cols=""></textarea> <br>
         <input class="left-in" type="button" value="左侧入">
         <input class="right-in" type="button" value="右侧入">
         <input class="left-out" type="button" value="左侧出">
         <input class="right-out" type="button" value="右侧出">
+        <input class="search" type="button" value="搜索">
     </form>
     <ul id="ul">
 
@@ -38,24 +46,40 @@
         var ul_li_html = "";
         document.getElementsByClassName("left-in")[0].onclick = function () {
             var inpvalue = document.getElementById("inp").value;
-            ul_li.unshift(inpvalue);
+            ul_li = ((inpvalue.replace(/[\s,，、]/g, ",")).split(",")).concat(ul_li);
             add();
         }
         document.getElementsByClassName("right-in")[0].onclick = function () {
             var inpvalue = document.getElementById("inp").value;
-            ul_li.push(inpvalue);
+            ul_li = ul_li.concat((inpvalue.replace(/[\s,，、]/g, ",")).split(","));
             add();
         }
         document.getElementsByClassName("left-out")[0].onclick = function () {
-            var inpvalue = document.getElementById("inp").value;
-            alert(ul_li.shift());
-            add();
+
+            ul_li.shift();
+            rem();
+
         }
         document.getElementsByClassName("right-out")[0].onclick = function () {
-            var inpvalue = document.getElementById("inp").value;
-            alert(ul_li.pop());
-            add();
+
+            ul_li.pop();
+            rem();
+
         }
+        document.getElementsByClassName("search")[0].onclick = function () {
+            var inpvalue = document.getElementById("inp").value;
+            var li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+
+                if ((inpvalue.indexOf(li[i].innerText)) != -1) {
+                    li[i].className = "on";
+                }
+            }
+        }
+
+
+
+
 
 
         // 把ul_li的值 创建为 li
@@ -64,7 +88,21 @@
                 ul_li_html += "<li>" + ul_li[i] + "</li>";
                 ul.innerHTML = ul_li_html;
             }
-            ul_li_html="";
+
+            ul_li_html = "";
+        }
+
+        function rem() {
+            if (ul_li.length > 0) {
+                for (i = 0; i < ul_li.length; i++) {
+                    ul_li_html += "<li>" + ul_li[i] + "</li>";
+                    ul.innerHTML = ul_li_html;
+                }
+                ul_li_html = "";
+            } else {
+                ul.innerHTML = ul_li_html;
+            }
+
         }
     </script>
 </body>
