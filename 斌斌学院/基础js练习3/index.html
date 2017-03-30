@@ -51,7 +51,7 @@
         }
         document.getElementsByClassName("right-in")[0].onclick = function () {
             var inpvalue = document.getElementById("inp").value;
-            ul_li = ul_li.concat((inpvalue.replace(/[\s,，、]/g, ",")).split(","));
+            ul_li = ul_li.concat((inpvalue.replace(/[，,、\s\t\r]/igm, ",")).split(","));
             add();
         }
         document.getElementsByClassName("left-out")[0].onclick = function () {
